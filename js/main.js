@@ -15,18 +15,16 @@ const tasks = [
 
   for (const task of tasks) {
     // pintar la tarea en la lista
-
-    if (task.completed === true) {
-        taskList.innerHTML += `<li class="lista cross-out" id="${task.id}">${task.name}</li>`
-        } else {
-            taskList.innerHTML += `<li class="lista" id="${task.id}">${task.name}</li>`
-        }
-
-    
+     taskList.innerHTML += `<li class="lista">
+     <input id="${task.id}" type="checkbox">${task.name}</li>`;
     }
 
 
-
+/*     if (task.completed === true) {
+      taskList.innerHTML += `<li class="lista cross-out" id="${task.id}">${task.name}</li>`
+      } else {
+          taskList.innerHTML += `<li class="lista" id="${task.id}">${task.name}</li>`
+      } */
 /*     for  (let i=0; i<tasks.length; i++) {
         taskList.innerHTML += `<li class="lista">${tasks[i].name}</li>`
     } */
