@@ -2,7 +2,7 @@
 
 const taskList = document.querySelector(".js-li");
 
-const tasks = [
+/* const tasks = [
   { name: "Recoger setas en el campo", completed: false, id: 1 },
   { name: "Comprar pilas", completed: false, id: 2 },
   { name: "Poner una lavadora de blancos", completed: false, id: 3 },
@@ -11,12 +11,32 @@ const tasks = [
     completed: false,
     id: 4,
   },
-];
+]; */
+
+const GITHUB_USER = "LauraMartinezPerez";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
+
+// - llamar al servidor
+      fetch(SERVER_URL)
+      .then (Response => Response.json())
+      .then ((data) => {
+        const tasks = data.results;
+        for (const task of tasks) {
+          taskList.innerHTML += `<li class=lista><input type="checkbox" id=${task.id}>${task.name}</li>`;
+        }
+        
+      });
 
 
 
 
-const pintarTareas = () => {
+
+
+
+
+
+
+/* const pintarTareas = () => {
   taskList.innerHTML = "";
   for (const torrezno of tasks) {
   if (torrezno.completed === false) {   
@@ -44,7 +64,7 @@ if (buscar.completed === false) {
   pintarTareas ();
 };
 taskList.addEventListener("click", handleClick);
-pintarTareas ();
+pintarTareas (); */
 
 
 
