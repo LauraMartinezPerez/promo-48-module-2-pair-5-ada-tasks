@@ -17,24 +17,44 @@ const GITHUB_USER = "LauraMartinezPerez";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
 // - llamar al servidor
-      fetch(SERVER_URL)
-      .then (Response => Response.json())
-      .then ((data) => {
-        const tasks = data.results;
-        for (const task of tasks) {
-          taskList.innerHTML += `<li class=lista><input type="checkbox" id=${task.id}>${task.name}</li>`;
-        }
-        
-      });
+// fetch(SERVER_URL)
+//   .then((Response) => Response.json())
+//   .then((data) => {
+//     const tasks = data.results;
+//     for (const task of tasks) {
+//       taskList.innerHTML += `<li class=lista><input type="checkbox" id=${task.id}>${task.name}</li>`;
+//     }
+//   });
 
+//SACAR EL BUCLE FUERA
+function renderTasks(object) {
+  for (const task of object) {
+    taskList.innerHTML += `<li class=lista><input type="checkbox" id=${task.id}>${task.name}</li>`;
+  }
+}
 
+//CONSTANTE PARA RECOGER LO DEL LOCAL STORAGE
+const tasksLocalStorage = JSON.parse(localStorage.getItem("tasks"));
 
-
-
-
-
-
-
+if (tasksLocalStorage !== null) {
+  const tasks = tasksLocalStorage; //UTILIZO LA CONSTANTE PARA RECUPERAR LO DEL LOCAL STORAGE
+  // si (existe el listado de tareas en Local Storage)
+  // pinta la lista de tareas almacenadas en tasksLocalStorage
+  renderTasks(tasks);
+} else {
+  //sino existe el listado de tareas en el local storage
+  // pide los datos al servidor
+  fetch(SERVER_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      const tasks = data.results;
+      const saveTask = localStorage.setItem("tasks", JSON.stringify(tasks));
+      renderTasks(tasks);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
 /* const pintarTareas = () => {
   taskList.innerHTML = "";
@@ -66,33 +86,6 @@ if (buscar.completed === false) {
 taskList.addEventListener("click", handleClick);
 pintarTareas (); */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* const bucle = () => { 
   for (const task of tasks) {
   // pintar la tarea en la lista
@@ -111,6 +104,3 @@ const handleClickList = (event) => {
 }
 taskList.addEventListener("click", handleClickList);
 bucle(); */
-
-
-
