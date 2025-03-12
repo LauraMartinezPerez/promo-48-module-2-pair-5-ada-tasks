@@ -29,7 +29,16 @@ const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 //SACAR EL BUCLE FUERA
 function renderTasks(object) {
   for (const task of object) {
-    taskList.innerHTML += `<li class=lista><input type="checkbox" id=${task.id}>${task.name}</li>`;
+    // taskList.innerHTML += `<li class=lista><input type="checkbox" id=${task.id}>${task.name}</li>`;
+    const liElement = document.createElement("li");
+    liElement.setAttribute("class", "lista");
+    taskList.appendChild(liElement);
+    const inputElement = document.createElement("input");
+    inputElement.setAttribute("type", "checkbox");
+    inputElement.setAttribute("id", task.id);
+    liElement.appendChild(inputElement);
+    const liContent = document.createTextNode(task.name);
+    liElement.appendChild(liContent);
   }
 }
 
