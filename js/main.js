@@ -26,6 +26,12 @@ const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 //     }
 //   });
 
+function handleClick(event) {
+  const idClicked = event.currentTarget.id;
+  console.log(idClicked);
+  if 
+}
+
 //SACAR EL BUCLE FUERA
 function renderTasks(object) {
   for (const task of object) {
@@ -39,6 +45,8 @@ function renderTasks(object) {
     liElement.appendChild(inputElement);
     const liContent = document.createTextNode(task.name);
     liElement.appendChild(liContent);
+
+    inputElement.addEventListener("click", handleClick);
   }
 }
 
