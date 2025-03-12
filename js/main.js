@@ -13,7 +13,7 @@ const taskList = document.querySelector(".js-li");
   },
 ]; */
 
-const GITHUB_USER = "LauraMartinezPerez";
+const GITHUB_USER = "";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
 // - llamar al servidor
