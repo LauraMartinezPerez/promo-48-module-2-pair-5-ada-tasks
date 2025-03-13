@@ -1,6 +1,7 @@
 "use strict";
 
 const taskList = document.querySelector(".js-li");
+let tasks = [];
 
 /* const tasks = [
   { name: "Recoger setas en el campo", completed: false, id: 1 },
@@ -28,9 +29,18 @@ const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
 function handleClick(event) {
   const idClicked = event.currentTarget.id;
-  console.log(idClicked);
-  if 
-}
+
+  const taskIndex = tasks.find((taskId) => {
+    return taskId.id});
+   
+    if (taskIndex.id === idClicked) {
+
+    }
+  };
+
+ 
+
+
 
 //SACAR EL BUCLE FUERA
 function renderTasks(object) {
@@ -48,13 +58,15 @@ function renderTasks(object) {
 
     inputElement.addEventListener("click", handleClick);
   }
+ 
 }
+
 
 //CONSTANTE PARA RECOGER LO DEL LOCAL STORAGE
 const tasksLocalStorage = JSON.parse(localStorage.getItem("tasks"));
 
 if (tasksLocalStorage !== null) {
-  const tasks = tasksLocalStorage; //UTILIZO LA CONSTANTE PARA RECUPERAR LO DEL LOCAL STORAGE
+  tasks = tasksLocalStorage; //UTILIZO LA CONSTANTE PARA RECUPERAR LO DEL LOCAL STORAGE
   // si (existe el listado de tareas en Local Storage)
   // pinta la lista de tareas almacenadas en tasksLocalStorage
   renderTasks(tasks);
@@ -64,7 +76,7 @@ if (tasksLocalStorage !== null) {
   fetch(SERVER_URL)
     .then((response) => response.json())
     .then((data) => {
-      const tasks = data.results;
+       tasks = data.results;
       const saveTask = localStorage.setItem("tasks", JSON.stringify(tasks));
       renderTasks(tasks);
     })
